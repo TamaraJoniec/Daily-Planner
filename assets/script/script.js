@@ -37,6 +37,16 @@ for (let i = 0; i < time.length; i++ ){
         
     let deleteImage = $("<i>");
     deleteImage.addClass("fas fa-trash-alt");
+
+  // appending variable functions to the tasks area
+    taskArea.append(time);
+    taskArea.append(writtenNote);
+    taskArea.append(buttonSave);
+    taskArea.append(buttonDelete); 
+    buttonSave.append(saveImage);
+    buttonDelete.append(deleteImage);
+   
+    $(".timeblock-container").append(taskArea);
 }
 
 // * Color-code each timeblock based on past, present, and future when the timeblock is viewed.

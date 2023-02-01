@@ -92,5 +92,10 @@ function clearData (y){
         $(writtenNote[y]).text(""); 
     })
 };
-
 // * Persist events between refreshes of a page
+for (let i= 0;i<time.length;i++){
+    let addedText =localStorage.getItem("Reminder:" + (i+time.length)+":00");
+    $(writtenNote[i]).text(addedText); 
+    logData(i);
+    clearData(i);
+}

@@ -84,5 +84,13 @@ function logData(y) {
         }
     })
 };
+// function to clear data 
+function clearData (y){
+    $(buttonDelete[y]).on("click", function(event){
+        event.preventDefault();
+        localStorage.removeItem("Reminder:" + (y+time.length) +":00");
+        $(writtenNote[y]).text(""); 
+    })
+};
 
 // * Persist events between refreshes of a page

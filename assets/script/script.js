@@ -75,11 +75,13 @@ for (let i = 0; i < time.length; i++) {
 writtenNote = $(".typingSpace")
 
 // * Save the event in local storage when the save button is clicked in that timeblock.
-function logData(n) {
-    $(buttonSave[n]).on("click", function (event) {
+function logData(y) {
+    $(buttonSave[y]).on("click", function (event) {
         event.preventDefault();
-
-      
+        let text = $(writtenNote[y]).val();
+        if (text !== "") {
+            localStorage.setItem("Reminder:" + (y + time.length) + ":00", text);
+        }
     })
 };
 

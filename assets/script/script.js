@@ -28,6 +28,15 @@ for (let i = 0; i < time.length; i++ ){
 
     let buttonSave = $("<button>");
     buttonSave.addClass("buttonSave col-1");
+
+    let buttonDelete = $("<button>");
+    buttonDelete.addClass("buttonDelete col-1");
+    
+    let saveImage =$("<i>");
+    saveImage.addClass("far fa-save");
+        
+    let deleteImage = $("<i>");
+    deleteImage.addClass("fas fa-trash-alt");
 }
 
 // * Color-code each timeblock based on past, present, and future when the timeblock is viewed.

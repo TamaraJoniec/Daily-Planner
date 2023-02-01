@@ -14,7 +14,13 @@ let buttonDelete = $(".buttonDelete")
 let writtenNote = $(".typingSpace")
     
 // * Present timeblocks for standard business hours when the user scrolls down.
- 
+let timeLength =9;
+for (let i = 0; i < time.length; i++ ){
+    let taskArea = $("<div>");
+    taskArea.addClass("linearBlock  time-block");
+  
+}
+
 // * Color-code each timeblock based on past, present, and future when the timeblock is viewed.
  
 // * Allow a user to enter an event when they click a timeblock

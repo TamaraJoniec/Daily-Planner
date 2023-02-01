@@ -48,14 +48,21 @@ for (let i = 0; i < time.length; i++ ){
    
     $(".timeblock-container").append(taskArea);
 }
+// Beginning at 9am with 8 hour cycles time block
 let startTime = moment().time(8).minutes(0).seconds(0).milliseconds(0);
-
+// creating a for loop with if statements to work out timings
 for (let i = 0; i < time.length; i++ ) {
 
     let timeBlock = startTime.add(1,"h")
 
     if (timeBlock.isBefore(timenow)) {
-
+        $(taskArea[i]).addClass("timePassed")
+    } 
+    else if (timeBlock.isSame(timenow)) {
+            $(taskArea[i]).addClass("now")
+    }      
+         else { 
+            $(taskArea[i]).addClass("timeAhead")
   
     }
 }

@@ -7,6 +7,11 @@
 let timeDeclaration = moment().format("LLLL");
 let timeNow =moment().minutes(0).seconds(0).milliseconds(0);
 $("#currentDay").text(timeDeclaration);
+let time = $(".time");
+let buttonSave = $(".buttonSave");
+let taskArea=$(".time-block")
+let buttonDelete = $(".buttonDelete")
+let writtenNote = $(".typingSpace")
     
 // * Present timeblocks for standard business hours when the user scrolls down.
  

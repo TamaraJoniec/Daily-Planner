@@ -48,7 +48,17 @@ for (let i = 0; i < time.length; i++ ){
    
     $(".timeblock-container").append(taskArea);
 }
+let startTime = moment().time(8).minutes(0).seconds(0).milliseconds(0);
 
+for (let i = 0; i < time.length; i++ ) {
+
+    let timeBlock = startTime.add(1,"h")
+
+    if (timeBlock.isBefore(timenow)) {
+
+  
+    }
+}
 // * Color-code each timeblock based on past, present, and future when the timeblock is viewed.
  
 // * Allow a user to enter an event when they click a timeblock

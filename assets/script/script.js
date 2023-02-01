@@ -22,6 +22,12 @@ for (let i = 0; i < time.length; i++ ){
     let time = $("<div>")
     time.addClass("time col-1");
     time.text((i+timeLength) + ":00")
+
+    let writtenNote = $("<typingSpace>");
+    writtenNote.addClass("typingSpace col-9 information");
+
+    let buttonSave = $("<button>");
+    buttonSave.addClass("buttonSave col-1");
 }
 
 // * Color-code each timeblock based on past, present, and future when the timeblock is viewed.

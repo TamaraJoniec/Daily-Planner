@@ -19,6 +19,9 @@ for (let i = 0; i < time.length; i++ ){
     let taskArea = $("<div>");
     taskArea.addClass("linearBlock  time-block");
   
+    let time = $("<div>")
+    time.addClass("time col-1");
+    time.text((i+timeLength) + ":00")
 }
 
 // * Color-code each timeblock based on past, present, and future when the timeblock is viewed.

@@ -2,10 +2,13 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
+  background-image: url("https://images.unsplash.com/photo-1495107334309-fcf20504a5ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZmllbGR8ZW58MHx8MHx8&w=1000&q=80");
 }
-
-.typingSpace { 
-  background: transparent;
+h1, p {
+  color:black;
+}
+textarea { 
+  background: white;
   border: none;
   resize: none;
   color: #000000;
@@ -15,7 +18,7 @@ body {
 
 .jumbotron {
   text-align: center;
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.629);
   color: black;
   border-radius: 0;
   border-bottom: 10px solid black;
@@ -25,7 +28,7 @@ body {
   white-space: pre-wrap;
 }
 
-.time-block{
+.container{
   text-align: center;
   border-radius: 15px;
 }
@@ -49,7 +52,7 @@ body {
 
 .now {
   background-color: #d6be8d;
-  color: white;
+  color: rgb(227, 131, 131);
 }
 
 .timeAhead {
@@ -62,11 +65,11 @@ body {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #06aed5;
+  background-color: #d5069e;
   color: white;
 }
 
 .buttonSave i:hover, .buttonDelete i:hover  {
   font-size: 20px;
-  transition: all 0.3s ease-in-out;
+  background-color: #ce80b9;
 }

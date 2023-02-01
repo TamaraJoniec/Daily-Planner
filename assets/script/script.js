@@ -9,9 +9,9 @@ let timeNow = moment().minutes(0).seconds(0).milliseconds(0);
 $("#currentDay").text(timeDeclaration);
 let time = $(".time");
 let buttonSave = $(".buttonSave");
-let taskArea = $(".time-block")
+let taskArea = $(".container")
 let buttonDelete = $(".buttonDelete")
-let writtenNote = $(".typingSpace")
+let writtenNote = $("textarea")
 
 // * Present timeblocks for standard business hours when the user scrolls down.
 let timeLength = 9;
@@ -23,8 +23,8 @@ for (let i = 0; i < time.length; i++) {
     time.addClass("time col-1");
     time.text((i + timeLength) + ":00")
 
-    let writtenNote = $("<typingSpace>");
-    writtenNote.addClass("typingSpace col-9 information");
+    let writtenNote = $("<textarea>");
+    writtenNote.addClass("textarea col-9 information");
 
     let buttonSave = $("<button>");
     buttonSave.addClass("buttonSave col-1");
@@ -46,7 +46,7 @@ for (let i = 0; i < time.length; i++) {
     buttonSave.append(saveImage);
     buttonDelete.append(deleteImage);
 
-    $(".timeblock-container").append(taskArea);
+    $(".container").append(taskArea);
 }
 
 // * Color-code each timeblock based on past, present, and future when the timeblock is viewed.
@@ -72,7 +72,7 @@ for (let i = 0; i < time.length; i++) {
 }
 
 // * Allow a user to enter an event when they click a timeblock
-writtenNote = $(".typingSpace")
+writtenNote = $("textarea")
 
 // * Save the event in local storage when the save button is clicked in that timeblock.
 function logData(y) {

@@ -3,25 +3,25 @@
 // The app should:
 
 // * Display the current day at the top of the calender when a user opens the planner.
- 
+
 let timeDeclaration = moment().format("LLLL");
-let timeNow =moment().minutes(0).seconds(0).milliseconds(0);
+let timeNow = moment().minutes(0).seconds(0).milliseconds(0);
 $("#currentDay").text(timeDeclaration);
 let time = $(".time");
 let buttonSave = $(".buttonSave");
-let taskArea=$(".time-block")
+let taskArea = $(".time-block")
 let buttonDelete = $(".buttonDelete")
 let writtenNote = $(".typingSpace")
-    
+
 // * Present timeblocks for standard business hours when the user scrolls down.
-let timeLength =9;
-for (let i = 0; i < time.length; i++ ){
+let timeLength = 9;
+for (let i = 0; i < time.length; i++) {
     let taskArea = $("<div>");
     taskArea.addClass("linearBlock  time-block");
-  
+
     let time = $("<div>")
     time.addClass("time col-1");
-    time.text((i+timeLength) + ":00")
+    time.text((i + timeLength) + ":00")
 
     let writtenNote = $("<typingSpace>");
     writtenNote.addClass("typingSpace col-9 information");
@@ -31,45 +31,56 @@ for (let i = 0; i < time.length; i++ ){
 
     let buttonDelete = $("<button>");
     buttonDelete.addClass("buttonDelete col-1");
-    
-    let saveImage =$("<i>");
+
+    let saveImage = $("<i>");
     saveImage.addClass("far fa-save");
-        
+
     let deleteImage = $("<i>");
     deleteImage.addClass("fas fa-trash-alt");
 
-  // appending variable functions to the tasks area
+    // appending variable functions to the tasks area
     taskArea.append(time);
     taskArea.append(writtenNote);
     taskArea.append(buttonSave);
-    taskArea.append(buttonDelete); 
+    taskArea.append(buttonDelete);
     buttonSave.append(saveImage);
     buttonDelete.append(deleteImage);
-   
+
     $(".timeblock-container").append(taskArea);
 }
-// Beginning at 9am with 8 hour cycles time block
+
+// * Color-code each timeblock based on past, present, and future when the timeblock is viewed.
+// Beginning at 9am with 8
 let startTime = moment().time(8).minutes(0).seconds(0).milliseconds(0);
 // creating a for loop with if statements to work out timings
-for (let i = 0; i < time.length; i++ ) {
+for (let i = 0; i < time.length; i++) {
 
-    let timeBlock = startTime.add(1,"h")
-
+    let timeBlock = startTime.add(1, "h")
+    // else if statements to work out the period of time
     if (timeBlock.isBefore(timenow)) {
         $(taskArea[i]).addClass("timePassed")
-    } 
+    }
+    // links to css for colour coding
     else if (timeBlock.isSame(timenow)) {
-            $(taskArea[i]).addClass("now")
-    }      
-         else { 
-            $(taskArea[i]).addClass("timeAhead")
-  
+        $(taskArea[i]).addClass("now")
+    }
+    // links to css for colour coding
+    else {
+        $(taskArea[i]).addClass("timeAhead")
+
     }
 }
-// * Color-code each timeblock based on past, present, and future when the timeblock is viewed.
- 
+
 // * Allow a user to enter an event when they click a timeblock
+writtenNote = $(".typingSpace")
 
 // * Save the event in local storage when the save button is clicked in that timeblock.
+function logData(n) {
+    $(buttonSave[n]).on("click", function (event) {
+        event.preventDefault();
+
+      
+    })
+};
 
 // * Persist events between refreshes of a page

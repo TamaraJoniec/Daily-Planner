@@ -2,11 +2,13 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   line-height: 1;
-  background-image: url("https://images.unsplash.com/photo-1495107334309-fcf20504a5ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZmllbGR8ZW58MHx8MHx8&w=1000&q=80");
+  /* background-image: url("https://images.unsplash.com/photo-1495107334309-fcf20504a5ab?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NXx8ZmllbGR8ZW58MHx8MHx8&w=1000&q=80"); */
 }
+
 h1, p {
-  color:black;
+  color: black;
 }
+
 textarea { 
   background: white;
   border: none;
@@ -24,11 +26,11 @@ textarea {
   border-bottom: 10px solid black;
 }
 
-.information{
+.information {
   white-space: pre-wrap;
 }
 
-.container{
+.container {
   text-align: center;
   border-radius: 15px;
 }
@@ -36,7 +38,7 @@ textarea {
 .linearBlock {
   white-space: pre-wrap;
   height: 80px;
-  border-top: 1px solid white;;
+  border-top: 1px solid white;
 }
 
 .time {
@@ -69,7 +71,7 @@ textarea {
   color: white;
 }
 
-.buttonSave i:hover, .buttonDelete i:hover  {
+.buttonSave i:hover, .buttonDelete i:hover {
   font-size: 20px;
   background-color: #ce80b9;
 }

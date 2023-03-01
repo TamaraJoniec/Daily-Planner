@@ -46,8 +46,8 @@ for (let i = 0; i < times.length; i++) {
 
 let startTime = moment().hour(timeLength).minute(0).second(0).millisecond(0);
 for (let i = 0; i < times.length; i++) {
-    let timeBlock = startTime.add(1, "h");
-    if (timeBlock.isBefore(timeNow)) {
+    let timeBlock = startTime.clone().add(1, "h")
+        if (timeBlock.isBefore(timeNow)) {
         $(taskArea[i]).addClass("timePassed");
     } else if (timeBlock.isSame(timeNow)) {
         $(taskArea[i]).addClass("now")

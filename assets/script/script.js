@@ -1,27 +1,20 @@
-// # Acceptance Criteria
-
-// The app should:
-
-// * Display the current day at the top of the calender when a user opens the planner.
-
 let timeDeclaration = moment().format("LLLL");
 let timeNow = moment().minutes(0).seconds(0).milliseconds(0);
 $("#currentDay").text(timeDeclaration);
-let time = $(".time");
-let buttonSave = $(".buttonSave");
-let taskArea = $(".container")
-let buttonDelete = $(".buttonDelete")
-let writtenNote = $("textarea")
+let times = $(".time");
+let saveButtons = $(".buttonSave");
+let taskAreas = $(".container > .time-block");
+let deleteButtons = $(".buttonDelete");
+let writtenNotes = $("textarea");
 
-// * Present timeblocks for standard business hours when the user scrolls down.
 let timeLength = 9;
-for (let i = 0; i < time.length; i++) {
+for (let i = 0; i < times.length; i++) {
     let taskArea = $("<div>");
     taskArea.addClass("linearBlock  time-block");
 
-    let time = $("<div>")
+    let time = $("<div>");
     time.addClass("time col-1");
-    time.text((i + timeLength) + ":00")
+    time.text(i + timeLength + ":00");
 
     let writtenNote = $("<textarea>");
     writtenNote.addClass("textarea col-9 information");
@@ -48,26 +41,17 @@ for (let i = 0; i < time.length; i++) {
 
     $(".container").append(taskArea);
 }
-
 // * Color-code each timeblock based on past, present, and future when the timeblock is viewed.
-// Beginning at 9am with 8
-let startTime = moment().time(8).minutes(0).seconds(0).milliseconds(0);
-// creating a for loop with if statements to work out timings
-for (let i = 0; i < time.length; i++) {
 
-    let timeBlock = startTime.add(1, "h")
-    // else if statements to work out the period of time
-    if (timeBlock.isBefore(timenow)) {
-        $(taskArea[i]).addClass("timePassed")
-    }
-    // links to css for colour coding
-    else if (timeBlock.isSame(timenow)) {
-        $(taskArea[i]).addClass("now")
-    }
-    // links to css for colour coding
-    else {
+let startTime = moment().hour(timeLength).minute(0).second(0).millisecond(0);
+for (let i = 0; i < times.length; i++) {
+    let timeBlock = startTime.add(1, "h");
+    if (timeBlock.isBefore(timeNow)) {
+        $(taskAreas[i]).addClass("timePassed");
+    } else if (timeBlock.isSame(timeNow)) {
+        $(taskAreas[i]).addClass("now")
+    } else {
         $(taskArea[i]).addClass("timeAhead")
-
     }
 }
 
@@ -85,17 +69,17 @@ function logData(y) {
     })
 };
 // function to clear data 
-function clearData (y){
-    $(buttonDelete[y]).on("click", function(event){
+function clearData(y) {
+    $(buttonDelete[y]).on("click", function (event) {
         event.preventDefault();
-        localStorage.removeItem("Reminder:" + (y+time.length) +":00");
-        $(writtenNote[y]).text(""); 
+        localStorage.removeItem("Reminder:" + (y + time.length) + ":00");
+        $(writtenNote[y]).text("");
     })
 };
 // * Persist events between refreshes of a page
-for (let i= 0;i<time.length;i++){
-    let addedText =localStorage.getItem("Reminder:" + (i+time.length)+":00");
-    $(writtenNote[i]).text(addedText); 
+for (let i = 0; i < time.length; i++) {
+    let addedText = localStorage.getItem("Reminder:" + (i + time.length) + ":00");
+    $(writtenNote[i]).text(addedText);
     logData(i);
     clearData(i);
 }

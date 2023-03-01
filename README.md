@@ -37,7 +37,7 @@ The following animation demonstrates the application functionality:
 
 ## Review
 
-* The URL of the deployed application
+* The URL of the deployed application:  https://tamarajoniec.github.io/Daily-Planner/
 
 ---
 ## Licence

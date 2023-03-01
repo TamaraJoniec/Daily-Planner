@@ -41,15 +41,16 @@ for (let i = 0; i < times.length; i++) {
 
     $(".container").append(taskArea);
 }
+
 // * Color-code each timeblock based on past, present, and future when the timeblock is viewed.
 
 let startTime = moment().hour(timeLength).minute(0).second(0).millisecond(0);
 for (let i = 0; i < times.length; i++) {
     let timeBlock = startTime.add(1, "h");
     if (timeBlock.isBefore(timeNow)) {
-        $(taskAreas[i]).addClass("timePassed");
+        $(taskArea[i]).addClass("timePassed");
     } else if (timeBlock.isSame(timeNow)) {
-        $(taskAreas[i]).addClass("now")
+        $(taskArea[i]).addClass("now")
     } else {
         $(taskArea[i]).addClass("timeAhead")
     }
@@ -60,26 +61,27 @@ writtenNote = $("textarea")
 
 // * Save the event in local storage when the save button is clicked in that timeblock.
 function logData(y) {
-    $(buttonSave[y]).on("click", function (event) {
+    $(saveButtons[y]).on("click", function (event) {
         event.preventDefault();
-        let text = $(writtenNote[y]).val();
+        let text = $(writtenNotes[y]).val();
         if (text !== "") {
-            localStorage.setItem("Reminder:" + (y + time.length) + ":00", text);
+            localStorage.setItem("Reminder:" + (y + timeLength) + ":00", text);
         }
     })
 };
 // function to clear data 
 function clearData(y) {
-    $(buttonDelete[y]).on("click", function (event) {
+    $(deleteButtons[y]).on("click", function (event) {
         event.preventDefault();
-        localStorage.removeItem("Reminder:" + (y + time.length) + ":00");
-        $(writtenNote[y]).text("");
+        localStorage.removeItem("Reminder:" + (y + timeLength) + ":00");
+        $(writtenNotes[y]).text("");
     })
 };
 // * Persist events between refreshes of a page
-for (let i = 0; i < time.length; i++) {
-    let addedText = localStorage.getItem("Reminder:" + (i + time.length) + ":00");
+for (let i = 0; i < timeLength; i++) {
+    let addedText = localStorage.getItem("Reminder:" + (i + timeLength) + ":00");
     $(writtenNote[i]).text(addedText);
     logData(i);
     clearData(i);
 }
+

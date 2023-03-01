@@ -1,14 +1,11 @@
 let timeDeclaration = moment().format("LLLL");
 let timeNow = moment().minutes(0).seconds(0).milliseconds(0);
 $("#currentDay").text(timeDeclaration);
-let times = $(".time");
-let saveButtons = $(".buttonSave");
 let taskAreas = $(".container > .time-block");
-let deleteButtons = $(".buttonDelete");
 let writtenNotes = $("textarea");
 
 let timeLength = 9;
-for (let i = 0; i < times.length; i++) {
+for (let i = 0; i < timeLength; i++) {
     let taskArea = $("<div>");
     taskArea.addClass("linearBlock  time-block");
 
@@ -40,48 +37,41 @@ for (let i = 0; i < times.length; i++) {
     buttonDelete.append(deleteImage);
 
     $(".container").append(taskArea);
-}
 
-// * Color-code each timeblock based on past, present, and future when the timeblock is viewed.
-
-let startTime = moment().hour(timeLength).minute(0).second(0).millisecond(0);
-for (let i = 0; i < times.length; i++) {
-    let timeBlock = startTime.clone().add(1, "h")
-        if (timeBlock.isBefore(timeNow)) {
-        $(taskArea[i]).addClass("timePassed");
+    // * Color-code each timeblock based on past, present, and future when the timeblock is viewed.
+    let startTime = moment().hour(timeLength).minute(0).second(0).millisecond(0);
+    let timeBlock = startTime.clone().add(i, "h")
+    if (timeBlock.isBefore(timeNow)) {
+        $(taskArea).addClass("timePassed");
     } else if (timeBlock.isSame(timeNow)) {
-        $(taskArea[i]).addClass("now")
+        $(taskArea).addClass("now")
     } else {
-        $(taskArea[i]).addClass("timeAhead")
+        $(taskArea).addClass("timeAhead")
     }
-}
 
-// * Allow a user to enter an event when they click a timeblock
-writtenNote = $("textarea")
+    // * Save the event in local storage when the save button is clicked in that timeblock.
+    function logData() {
+        $(buttonSave).on("click", function (event) {
+            event.preventDefault();
+            let text = $(writtenNote).val();
+            if (text !== "") {
+                localStorage.setItem("Reminder:" + (i + timeLength) + ":00", text);
+            }
+        })
+    };
+    logData();
 
-// * Save the event in local storage when the save button is clicked in that timeblock.
-function logData(y) {
-    $(saveButtons[y]).on("click", function (event) {
-        event.preventDefault();
-        let text = $(writtenNotes[y]).val();
-        if (text !== "") {
-            localStorage.setItem("Reminder:" + (y + timeLength) + ":00", text);
-        }
-    })
-};
-// function to clear data 
-function clearData(y) {
-    $(deleteButtons[y]).on("click", function (event) {
-        event.preventDefault();
-        localStorage.removeItem("Reminder:" + (y + timeLength) + ":00");
-        $(writtenNotes[y]).text("");
-    })
-};
-// * Persist events between refreshes of a page
-for (let i = 0; i < timeLength; i++) {
+    // function to clear data 
+    function clearData() {
+        $(buttonDelete).on("click", function (event) {
+            event.preventDefault();
+            localStorage.removeItem("Reminder:" + (i + timeLength) + ":00");
+            $(writtenNote).text("");
+        })
+    };
+    clearData();
+
+    // * Persist events between refreshes of a page
     let addedText = localStorage.getItem("Reminder:" + (i + timeLength) + ":00");
-    $(writtenNote[i]).text(addedText);
-    logData(i);
-    clearData(i);
+    $(writtenNote).text(addedText);
 }
-
